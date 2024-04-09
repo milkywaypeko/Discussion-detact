@@ -1,48 +1,29 @@
 import numpy as np
 import pandas as pd
-import xlrd as xl
-from pandas import ExcelWriter
-from pandas import ExcelFile
 import pprint
-from sklearn import preprocessing
-from sklearn.model_selection import train_test_split
+import nltk
+import warnings
+import spacy
+from spacy.lang.en import English
+from string import punctuation
+from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-import re
-import pickle
-from operator import itemgetter
-import time, datetime
-from functools import partial, update_wrapper
-from openpyxl import load_workbook
-
+from sklearn import preprocessing
 from sklearn.feature_extraction.text import TfidfVectorizer
-
-from imblearn.over_sampling import SMOTE
-
 from sklearn.pipeline import Pipeline
-from imblearn.pipeline import Pipeline as Imb_Pipeline
-
 from sklearn.linear_model import LogisticRegression
-
-from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_validate
 from sklearn.metrics import precision_recall_fscore_support, classification_report, accuracy_score, make_scorer, confusion_matrix
 
 pp = pprint.PrettyPrinter(indent=4)
 
 ## Ignore warnings
-import warnings
 warnings.filterwarnings('ignore')
-
-import spacy
-from spacy.lang.en import English
 
 # Load the English language model
 nlp = spacy.load('en_core_web_sm')
 
 # Create an instance of the English parser
 parser = English()
-
-from string import punctuation
-from nltk.corpus import stopwords
 
 stop_words = list(punctuation) + ["'s","'m","n't","'re","-","'ll",'...'] #+ stopwords.words('english')
 
@@ -83,7 +64,7 @@ labels.sort()
 
 pp.pprint(labels)
 
-pipeline = Imb_Pipeline([
+pipeline = Pipeline([
     ('vect', TfidfVectorizer(tokenizer=tokenize)),
     ('clf', LogisticRegression())
 ])
@@ -96,3 +77,9 @@ parameters = {
 
 pipeline.fit(X, y)
 print(pipeline.predict(["@DenVys thank you so much!"]))
+
+target = " "
+while(target != "wqfurry"):
+    target = input("input : ")
+    print(pipeline.predict([target]))
+    target = " "
