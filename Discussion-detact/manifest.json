@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Github discussion detector",
+    "version": "1.0",
+    "permissions": ["activeTab"],
+    
+    "content_scripts": 
+    [
+        {
+            "matches": ["https://github.com/*/*/issues/*"],
+            "js": ["content.js"]
+        }
+    ],
+
+    "action":
+    {
+        "default_title": "detector",
+        "default_popup": "popup.html"
+    }
+}
