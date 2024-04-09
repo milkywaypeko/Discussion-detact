@@ -1,30 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     var toggleButton = document.getElementById('toggleDetector');
-    var detectorIcon = document.getElementById('detectorIcon');
 
-    // 저장된 상태를 불러와서 아이콘 초기 상태를 설정합니다.
+    // 저장된 상태를 불러와서 버튼 초기 상태를 설정합니다.
     chrome.storage.local.get(['detectorEnabled'], function(result) {
-        updateIcon(result.detectorEnabled);
+        const isEnabled = result.detectorEnabled !== undefined ? result.detectorEnabled : false;
+        updateButton(isEnabled);
     });
 
     toggleButton.addEventListener('click', function() {
         chrome.storage.local.get(['detectorEnabled'], function(result) {
             let isEnabled = !result.detectorEnabled;
             chrome.storage.local.set({detectorEnabled: isEnabled}, function() {
-                updateIcon(isEnabled);
+                updateButton(isEnabled);
                 // background.js에 상태 변경 알림
                 chrome.runtime.sendMessage({action: "toggle", state: isEnabled});
             });
         });
     });
 
-    function updateIcon(isEnabled) {
+    function updateButton(isEnabled) {
         if (isEnabled) {
-            detectorIcon.className = 'fas fa-eye';
-            detectorIcon.style.color = 'green';
+            toggleButton.style.backgroundImage = "url('img/power_on.png')"; // 전원 켜짐 상태 이미지
         } else {
-            detectorIcon.className = 'fas fa-eye-slash';
-            detectorIcon.style.color = 'grey';
+            toggleButton.style.backgroundImage = "url('img/power_off.png')"; // 전원 꺼짐 상태 이미지
         }
     }
 });
