@@ -1,2 +1,3 @@
-console.log("hello, world!");
-
+if (window.location.href.includes('/issues')) {
+    chrome.runtime.sendMessage({message: "discussionDetected"});
+  }

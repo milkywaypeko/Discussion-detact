@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>GitHub Discussion Detector</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -10,18 +9,25 @@
             padding: 20px;
             width: 300px;
         }
-        .icon-button {
-            font-size: 24px;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
+        h1 {
+            font-size: 18px;
+            color: #333;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <h1>GitHub Discussion Detector</h1>
-    <p>Detector</p>
-    <button class="icon-button" id="toggleDetector"><i id="detectorIcon" class="fas fa-eye-slash"></i></button>
+    <p>이 확장 프로그램은 GitHub에서 Discussion 탭을 감지합니다.</p>
+    <button id="toggleDetector">turn on</button>
     <script src="popup.js"></script>
 </body>
 </html>
