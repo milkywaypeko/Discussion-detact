@@ -1,7 +1,5 @@
-import sys
 import numpy as np
 import pandas as pd
-import pprint
 import nltk
 import warnings
 import spacy
@@ -15,8 +13,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import precision_recall_fscore_support, classification_report, accuracy_score, make_scorer, confusion_matrix
-
-pp = pprint.PrettyPrinter(indent=4)
 
 ## Ignore warnings
 warnings.filterwarnings('ignore')

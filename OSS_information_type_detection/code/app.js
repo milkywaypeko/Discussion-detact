@@ -1,7 +1,7 @@
 //npm init -y
-//npm install express
-//npm install pm2
+//npm install express pm2
 //node ./node_modules/pm2/bin/pm2 start app.js
+//curl -X POST http://localhost:3000/process-text -H "Content-Type: application/json" -d "{\"text\":\"hello world\"}"
 //node ./node_modules/pm2/bin/pm2 delete app.js
 
 const express = require('express');
