@@ -1,6 +1,8 @@
 //npm init -y
 //npm install express
-//node app.js
+//npm install pm2
+//node ./node_modules/pm2/bin/pm2 start app.js
+//node ./node_modules/pm2/bin/pm2 delete app.js
 
 const express = require('express');
 const { spawn } = require('child_process');
