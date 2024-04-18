@@ -1,16 +1,18 @@
 chrome.runtime.onInstalled.addListener(function() {
-    // 설치 또는 업데이트 시 기본적으로 감지기를 활성화 상태로 설정합니다.
-    chrome.storage.local.set({detectorEnabled: true});
+    chrome.storage.local.set({enabled: true}); // 기본값 설정
 });
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request.action === "toggle") {
-        if (request.state === true) {
-            console.log("감지기가 활성화되었습니다.");
-            // 감지기 활성화 관련 코드
-        } else {
-            console.log("감지기가 비활성화되었습니다.");
-            // 감지기 비활성화 관련 코드
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.enabled !== undefined) {
+            chrome.storage.local.set({enabled: request.enabled});
+            if (request.enabled) {
+                // 확장 프로그램 활성화
+                console.log("GitHub Discussion Detector Enabled");
+            } else {
+                // 확장 프로그램 비활성화
+                console.log("GitHub Discussion Detector Disabled");
+            }
         }
     }
-});
+);
