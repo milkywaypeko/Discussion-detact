@@ -4,7 +4,7 @@ import nltk
 import warnings
 import spacy
 import joblib
-from spacy.lang.en import English
+import tokenizer
 from string import punctuation
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -19,28 +19,6 @@ warnings.filterwarnings('ignore')
 
 # Load the English language model
 nlp = spacy.load('en_core_web_sm')
-
-# Create an instance of the English parser
-parser = English()
-
-stop_words = list(punctuation) + ["'s","'m","n't","'re","-","'ll",'...'] #+ stopwords.words('english')
-
-def get_lemma(item):
-    return WordNetLemmatizer().lemmatize(item)
-
-def tokenize(line):
-    line_tokens = []
-    tokens = parser(line)
-    for token in tokens:
-        if token.orth_.isspace():
-            continue
-        elif token.like_url:
-            line_tokens.append('URL')
-        elif token.orth_.startswith('@'):
-            line_tokens.append('SCREEN_NAME')
-        elif str(token) not in stop_words:
-            line_tokens.append(get_lemma(token.lower_))
-    return line_tokens
 
 ### Read from the pickled file
 all_data = pd.read_csv('../data/combined_data_oversampled.csv')
@@ -57,7 +35,7 @@ labels = list(set(y))
 labels.sort()
 
 pipeline = Pipeline([
-    ('vect', TfidfVectorizer(tokenizer=tokenize)),
+    ('vect', TfidfVectorizer(tokenizer=tokenizer.tokenize)),
     ('clf', LogisticRegression())
 ])
 
