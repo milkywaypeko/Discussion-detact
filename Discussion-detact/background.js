@@ -16,3 +16,14 @@ chrome.runtime.onMessage.addListener(
         }
     }
 );
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === "answers") {
+        // 답변 데이터를 처리합니다.
+        console.log("Received answers:", message.data);
+        // 예: 데이터를 로컬 스토리지에 저장
+        chrome.storage.local.set({answers: message.data}, () => {
+            console.log('Answers are saved.');
+        });
+    }
+});
