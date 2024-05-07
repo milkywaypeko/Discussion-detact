@@ -19,11 +19,21 @@ chrome.runtime.onMessage.addListener(
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "answers") {
-        // 답변 데이터를 처리합니다.
         console.log("Received answers:", message.data);
-        // 예: 데이터를 로컬 스토리지에 저장
-        chrome.storage.local.set({answers: message.data}, () => {
-            console.log('Answers are saved.');
+        // 서버에 데이터 전송
+        fetch('http://selogic.seoultech.ac.kr:8000/process', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({answers: message.data}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
     }
 });
