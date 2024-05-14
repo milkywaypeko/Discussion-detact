@@ -1,3 +1,5 @@
+console.log("Hello");
+
 chrome.runtime.onInstalled.addListener(function() {
     chrome.storage.local.set({enabled: true}); // 기본값 설정
 });
