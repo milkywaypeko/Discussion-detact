@@ -2,7 +2,11 @@
     "manifest_version": 3,
     "name": "Github discussion detector",
     "version": "1.0",
-    "permissions": ["tabs"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["activeTab", "storage"],
+
     
     "content_scripts": 
     [

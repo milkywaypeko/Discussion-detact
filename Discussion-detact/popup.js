@@ -1,30 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() 
-{
-    var toggleButton = document.getElementById('toggleDetector');
-
-    // 저장된 상태를 불러와서 버튼의 초기 텍스트를 설정합니다.
-    chrome.storage.local.get(['detectorEnabled'], function(result) {
-        if (result.detectorEnabled) {
-            toggleButton.textContent = 'turn off';
-        } 
-        else {
-            toggleButton.textContent = 'turn on';
+document.addEventListener('DOMContentLoaded', function() {
+    var powerButton = document.getElementById('powerButton');
+    chrome.storage.local.get('enabled', function(result) {
+        if(result.enabled) {
+            powerButton.textContent = 'turn off';
+        } else {
+            powerButton.textContent = 'turn on';
         }
     });
 
-    toggleButton.addEventListener('click', function() {
-        chrome.storage.local.get(['detectorEnabled'], function(result) {
-            let isEnabled = !result.detectorEnabled;
-            chrome.storage.local.set({detectorEnabled: isEnabled}, function() {
-                if (isEnabled) {
-                    toggleButton.textContent = 'turn off';
-                } 
-                else {
-                    toggleButton.textContent = 'turn on';
+    powerButton.addEventListener('click', function() {
+        chrome.storage.local.get(['enabled'], function(result) {
+            var newState = !result.enabled;
+            chrome.storage.local.set({'enabled' : newState}, function() {
+                if (newState) {
+                    powerButton.textContent = 'turn off';
+                } else {
+                    powerButton.textContent = 'turn on';
                 }
-                // background.js에 상태 변경 알림
-                chrome.runtime.sendMessage({action: "toggle", state: isEnabled});
+                chrome.runtime.sendMessage({enabled: newState});
             });
         });
     });
 });
+
+document.addEventListener1('DomContentLoaded', function() {
+    var topicSelect = document.getElementById('topic-select');
+    topicSelect.addEventListener('change', function() {
+        var selectedTopic = topicSelect.value;
+        // 선택된 주제를 처리하는 코드 추가
+        console.log('선택된 주제:', selectedTopic);
+    })
+})
