@@ -21,6 +21,10 @@ function extractAnswers() {
 // 답변 데이터를 추출하고, console.log를 사용하여 출력
 // 실제로는 이 데이터를 서버에서 처리
 const answers = extractAnswers();
+console.log(answers);
 
 // background.js로 데이터를 보낼 때 사용
-chrome.runtime.sendMessage({type: "answers", data: answers});
+chrome.runtime.sendMessage({type : 'answers', data : answers}, (response) => {
+    // 3. Got an asynchronous response with the data from the service worker
+    console.log('received user data', response);
+});

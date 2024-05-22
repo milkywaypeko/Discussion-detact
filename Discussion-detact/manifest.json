@@ -3,9 +3,12 @@
     "name": "Github discussion detector",
     "version": "1.0",
     "background": {
-        "service_worker": "background.js"
-    },
+        "service_worker": "service-worker.js"
+    },    
     "permissions": ["activeTab", "storage"],
+    "host_permissions": [
+        "http://selogic.seoultech.ac.kr:8000/"
+    ],
 
     
     "content_scripts": 
