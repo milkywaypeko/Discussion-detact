@@ -4,14 +4,20 @@ function extractAnswers() {
     // 주의: Github의 html 구조가 변경될 수 있으므로, 필요에 따라 셀렉터를 업데이트
     //js-timeline-progressive-focus-container
     const answerElements = document.querySelectorAll(".js-timeline-item");
+    var count = 0;
     answerElements.forEach(elem => {
         // 답변 내용을 추출합니다. 내용이 길 경우 더 많은 처리 필요
         const answerBody = elem.querySelectorAll(".js-comment-body");
         answerBodytext = answerBody.forEach(texts => {
             const answerstext = texts.querySelectorAll("p");
             answerST = answerstext.forEach(STs => {
-                const answerSText = STs.innerText
+                const answerSText = {
+                    issueAnchor : 'IssueText' + count,
+                    text : STs.innerText,
+                };
                 answers.push(answerSText);
+                STs.setAttribute('href', 'IssueText' + count);
+                count += 1;
             }); 
         });
     });

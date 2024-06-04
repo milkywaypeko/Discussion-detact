@@ -5,31 +5,32 @@ chrome.runtime.onInstalled.addListener(function() {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'answers') {
         console.log("Received answers:", message.data);
-        let resulut = [];
+        let result = [];
         
         const fetchPromises = message.data.map(SerTe => {
+            console.log(SerTe.text);
             return fetch('http://selogic.seoultech.ac.kr:8000/process', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({sentence: SerTe}),
+                body: JSON.stringify({sentence: SerTe.text}),
                 credentials: "include",
             })
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                resulut.push(data);
+                result.push({issueAnchor : SerTe.issueAnchor , textType : data});
             })
             .catch((error) => {
                 console.error('Error:', error);
-                resulut.push(error);
+                result.push({issueAnchor : SerTe.issueAnchor , textType : error});
             });
         });
 
         Promise.all(fetchPromises).then(() => {
-            console.log(resulut);
-            sendResponse(resulut);
+            console.log(result);
+            sendResponse(result);
         });
 
         return true;
