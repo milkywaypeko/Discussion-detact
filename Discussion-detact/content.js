@@ -16,7 +16,7 @@ function extractAnswers() {
                     text : STs.innerText,
                 };
                 answers.push(answerSText);
-                STs.setAttribute('href', 'IssueText' + count);
+                STs.setAttribute('class', 'IssueText' + count);
                 count += 1;
             }); 
         });
@@ -29,8 +29,12 @@ function extractAnswers() {
 const answers = extractAnswers();
 console.log(answers);
 
+classFy_answers = [];
+
 // background.js로 데이터를 보낼 때 사용
 chrome.runtime.sendMessage({type : 'answers', data : answers}, (response) => {
     // 3. Got an asynchronous response with the data from the service worker
     console.log('received user data', response);
-});
+
+    //그냥 이안에서 response 사용하시면 됩니다.
+})
