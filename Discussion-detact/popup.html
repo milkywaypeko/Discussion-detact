@@ -5,36 +5,77 @@
     <title>GitHub Discussion Detector</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-            width: 300px;
+            width: 350px;
+            height: 400px;
+            margin: 0 auto;
         }
-        h1 {
-            font-size: 18px;
-            color: #333;
+        .color-box {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
         }
-        p {
-            font-size: 14px;
-            color: #666;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
+        .color-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
     <h1>GitHub Discussion Detector</h1>
-    <label for="topic-select">분류 주제 선택:</label>
-    <select id="topic-select">
-        <option value="">--주제를 선택해주세요--</option>
-        <option value="bug">버그</option>
-        <option value="feature">기능 요청</option>
-        <option value="question">질문</option>
-    </select>
-    <button id="powerButton">turn on</button>
-    <script src="popup.js"></script>
+    <label for="topic-identifier">분류 주제</label>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #F08080;"></div>
+        <span>: Action on Issue</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #00FF00;"></div>
+        <span>: Bug Reproduction</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #808000;"></div>
+        <span>: Contribution and Commitment</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #FF7F50;"></div>
+        <span>: Expected Behaviour</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #F0F8FF;"></div>
+        <span>: Investigation and Exploration</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #7FFFD4;"></div>
+        <span>: Motivation</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #DEB887;"></div>
+        <span>: Observed Bug Behaviour</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #ADFF2F;"></div>
+        <span>: Potential New Issues and Requests</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #00FFFF;"></div>
+        <span>: Social Conversation</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #DDA0DD;"></div>
+        <span>: Solution Discussion</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #00FFFF;"></div>
+        <span>: Solution Usage</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #F0FFFF;"></div>
+        <span>: Task Progress</span>
+    </div>
+    <div class="color-item">
+        <div class="color-box" style="background-color: #F5F5DC;"></div>
+        <span>: Workarounds</span>
+    </div>
 </body>
 </html>
