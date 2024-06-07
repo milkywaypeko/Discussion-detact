@@ -37,4 +37,59 @@ chrome.runtime.sendMessage({type : 'answers', data : answers}, (response) => {
     console.log('received user data', response);
 
     //그냥 이안에서 response 사용하시면 됩니다.
+    for(let i = 0; i < response.length; i++) {
+        if (response[i].textType.result === "Action on Issue")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'lightcoral';
+            } 
+        else if (response[i].textType.result === "Bug Reproduction")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'lime';
+            }
+        else if (response[i].textType.result === "Contribution and Commitment")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'olive';
+            }
+        else if (response[i].textType.result === "Expected Behaviour")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'coral';
+            }
+        else if (response[i].textType.result === "Investigation and Exploration")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'aliceblue';
+            }
+        else if (response[i].textType.result === "Motivation")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'aquamarine';
+            }
+        else if (response[i].textType.result === "Observed Bug Behaviour")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'burlywood';
+            }
+        else if (response[i].textType.result === "Potential New Issues and Requests")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'greenyellow';
+            }
+        else if (response[i].textType.result === "Social Conversation")
+            {   
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'cyan';
+            }
+        else if (response[i].textType.result === "Solution Discussion")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'plum';
+            }
+        else if (response[i].textType.result === "Solution Usage")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'aqua';
+            }
+        else if (response[i].textType.result === "Task Progress")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'azure';
+            }
+        else if (response[i].textType.result === "Workarounds")
+            {
+                document.querySelector('.' + response[i].issueAnchor).style.backgroundColor = 'beige';
+            }
+
+}
 })
