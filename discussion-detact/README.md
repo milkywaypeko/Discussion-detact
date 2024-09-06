@@ -15,6 +15,11 @@ My Chrome Extension
 
 Suggestions and pull requests are welcomed!.
 
+npm install -g chrome-extension-cli
+npm i sentence-splitter
+npm run watch
+
+
 ---
 
 This project was bootstrapped with [Chrome Extension CLI](https://github.com/dutiyesh/chrome-extension-cli)

@@ -1,3 +1,6 @@
+import { split } from "sentence-splitter";
+
+
 function extractAnswers() {
     const answers = [];
     // Github의 답변들은 일반적으로 특정 클래스를 가진 요소 내에 위치
@@ -8,8 +11,10 @@ function extractAnswers() {
     answerElements.forEach(elem => {
         // 답변 내용을 추출합니다. 내용이 길 경우 더 많은 처리 필요
         const answerBody = elem.querySelectorAll(".js-comment-body");
+        var answerBodytext;
         answerBodytext = answerBody.forEach(texts => {
             const answerstext = texts.querySelectorAll("p");
+            var answerST;
             answerST = answerstext.forEach(STs => {
                 const answerSText = {
                     issueAnchor : 'IssueText' + count,
@@ -18,6 +23,7 @@ function extractAnswers() {
                 answers.push(answerSText);
                 STs.setAttribute('class', 'IssueText' + count);
                 count += 1;
+                console.log(split(STs.innerText));
             }); 
         });
     });
@@ -29,6 +35,7 @@ function extractAnswers() {
 const answers = extractAnswers();
 console.log(answers);
 
+var classFy_answers;
 classFy_answers = [];
 
 // background.js로 데이터를 보낼 때 사용
