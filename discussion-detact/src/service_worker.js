@@ -11,11 +11,11 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'answers') {
-        console.log("Received answers:", message.data);
+        //console.log("Received answers:", message.data);
         let result = [];
         
         const fetchPromises = message.data.map(SerTe => {
-            console.log(SerTe.text);
+            //console.log(SerTe.text);
             return fetch('http://selogic.seoultech.ac.kr:8000/process', {
                 method: 'POST',
                 headers: {
@@ -26,17 +26,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                //console.log('Success:', data);
                 result.push({issueObjectAnchor : SerTe.issueObjectAnchor , textType : data});
             })
             .catch((error) => {
-                console.error('Error:', error);
+                //console.error('Error:', error);
                 result.push({issueObjectAnchor : SerTe.issueObjectAnchor , textType : error});
             });
         });
 
         Promise.all(fetchPromises).then(() => {
-            console.log(result);
+            //console.log(result);
             sendResponse(result);
         });
 
