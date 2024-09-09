@@ -27,11 +27,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                result.push({issueAnchor : SerTe.issueAnchor , textType : data});
+                result.push({issueObjectAnchor : SerTe.issueObjectAnchor , textType : data});
             })
             .catch((error) => {
                 console.error('Error:', error);
-                result.push({issueAnchor : SerTe.issueAnchor , textType : error});
+                result.push({issueObjectAnchor : SerTe.issueObjectAnchor , textType : error});
             });
         });
 
