@@ -60,54 +60,67 @@ chrome.runtime.sendMessage({type : 'answers', data : answers}, (response) => {
         if (response[i].textType.result === "Action on Issue")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'lightcoral';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         } 
         else if (response[i].textType.result === "Bug Reproduction")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'lime';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Contribution and Commitment")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'olive';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Expected Behaviour")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'coral';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Investigation and Exploration")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'aliceblue';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Motivation")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'aquamarine';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Observed Bug Behaviour")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'burlywood';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Potential New Issues and Requests")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'greenyellow';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Social Conversation")
         {   
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'cyan';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Solution Discussion")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'plum';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Solution Usage")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'aqua';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Task Progress")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'azure';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         }
         else if (response[i].textType.result === "Workarounds")
         {
             document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'beige';
+            document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
         };
     };
 });
