@@ -9,11 +9,14 @@ function extractAnswers() {
     const answerElements = document.querySelectorAll(".js-timeline-item");
     var count = 0;
     var stringcount = 0;
+    var timelineCount = 0;
+    var elementStratEnd = [];
     answerElements.forEach(elem => {
         // 답변 내용을 추출합니다. 내용이 길 경우 더 많은 처리 필요
         const answerBody = elem.querySelectorAll(".js-comment-body");
         var answerBodytext;
         answerBodytext = answerBody.forEach(texts => {
+            var start = stringcount;
             const answerstext = texts.querySelectorAll("p");
             var answerST;
             answerST = answerstext.forEach(STs => {
@@ -39,8 +42,18 @@ function extractAnswers() {
                 }
                 STs.innerHTML = SPTOstring;
             }); 
+            var end = stringcount;
+            elementStratEnd.push(
+                {
+                    "timelineCount":timelineCount,
+                    "start":start,
+                    "end":end
+                }
+            );
+            timelineCount += 1;
         });
     });
+    console.log(elementStratEnd);
     return answers;
 }
 
