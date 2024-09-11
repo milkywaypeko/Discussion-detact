@@ -2,145 +2,60 @@
 
 import './popup.css';
 
-(function () {
-    // We will make use of Storage API to get and store `count` value
-    // More information on Storage API can we found at
-    // https://developer.chrome.com/extensions/storage
+document.addEventListener('DOMContentLoaded', function(){
+    var Set = document.getElementById("Set1");
+    Set.addEventListener('click', function(){
+        const ActiononIssue = document.getElementById('ActiononIssue').value;
+        const BugReproduction = document.getElementById('BugReproduction').value;
+        const ContributionandCommitment = document.getElementById('ContributionandCommitment').value;
+        const ExpectedBehaviour = document.getElementById('ExpectedBehaviour').value;
+        const InvestigationandExploration = document.getElementById('InvestigationandExploration').value;
+        const Motivation = document.getElementById('Motivation').value;
+        const ObservedBugBehaviour = document.getElementById('ObservedBugBehaviour').value;
+        const PotentialNewIssuesandRequests = document.getElementById('PotentialNewIssuesandRequests').value;
+        const SocialConversation = document.getElementById('SocialConversation').value;
+        const SolutionDiscussion = document.getElementById('SolutionDiscussion').value;
+        const SolutionUsage = document.getElementById('SolutionUsage').value;
+        const TaskProgress = document.getElementById('TaskProgress').value;
+        const Workarounds = document.getElementById('Workarounds').value;
 
-    // To get storage access, we have to mention it in `permissions` property of manifest.json file
-    // More information on Permissions can we found at
-    // https://developer.chrome.com/extensions/declare_permissions
-    const counterStorage = {
-        get: (cb) => {
-            chrome.storage.sync.get(['count'], (result) => {
-                cb(result.count);
-            });
-        },
-        set: (value, cb) => {
-            chrome.storage.sync.set(
-                {
-                    count: value,
-                },
-                () => {
-                    cb();
-                }
-            );
-        },
-    };
-
-    function setupCounter(initialValue = 0) {
-        document.getElementById('counter').innerHTML = initialValue;
-
-        document.getElementById('incrementBtn').addEventListener('click', () => {
-            updateCounter({
-                type: 'INCREMENT',
-            });
-        });
-
-        document.getElementById('decrementBtn').addEventListener('click', () => {
-            updateCounter({
-                type: 'DECREMENT',
-            });
-        });
-    }
-
-    function updateCounter({ type }) {
-        counterStorage.get((count) => {
-            let newCount;
-
-            if (type === 'INCREMENT') {
-                newCount = count + 1;
-            } else if (type === 'DECREMENT') {
-                newCount = count - 1;
-            } else {
-                newCount = count;
-            }
-
-            counterStorage.set(newCount, () => {
-                document.getElementById('counter').innerHTML = newCount;
-
-                // Communicate with content script of
-                // active tab by sending a message
-                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                    const tab = tabs[0];
-
-                    chrome.tabs.sendMessage(
-                        tab.id,
-                        {
-                            type: 'COUNT',
-                            payload: {
-                                count: newCount,
-                            },
-                        },
-                        (response) => {
-                            console.log('Current count value passed to contentScript file');
-                        }
-                    );
-                });
-            });
-        });
-    }
-
-    function restoreCounter() {
-        // Restore count value
-        counterStorage.get((count) => {
-            if (typeof count === 'undefined') {
-                // Set counter value as 0
-                counterStorage.set(0, () => {
-                    setupCounter(0);
-                });
-            } else {
-                setupCounter(count);
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', restoreCounter);
-
-    // Communicate with background file by sending a message
-    chrome.runtime.sendMessage(
-        {
-            type: 'GREETINGS',
-            payload: {
-                message: 'Hello, my name is Pop. I am from Popup.',
-            },
-        },
-        (response) => {
-            console.log(response.message);
+        var condition = {
+            'ActiononIssue' : ActiononIssue,
+            'BugReproduction' : BugReproduction,
+            'ContributionandCommitment' : ContributionandCommitment,
+            'ExpectedBehaviour' : ExpectedBehaviour,
+            'InvestigationandExploration' : InvestigationandExploration,
+            'Motivation' : Motivation,
+            'ObservedBugBehaviour' : ObservedBugBehaviour,
+            'PotentialNewIssuesandRequests' : PotentialNewIssuesandRequests,
+            'SocialConversation' : SocialConversation,
+            'SolutionDiscussion' : SolutionDiscussion,
+            'SolutionUsage' : SolutionUsage,
+            'TaskProgress' : TaskProgress,
+            'Workarounds' : Workarounds,
         }
-    );
-})();
 
-document.addEventListener('DOMContentLoaded', function() {
-    var powerButton = document.getElementById('powerButton');
-    chrome.storage.local.get('enabled', function(result) {
-            if(result.enabled) {
-                    powerButton.textContent = 'turn off';
-            } else {
-                    powerButton.textContent = 'turn on';
-            }
-    });
+        /*
+        console.log('Actionon Issue :' + ActiononIssue);
+        console.log('Bug Reproduction :' + BugReproduction);
+        console.log('Contributionand Commitment :' + ContributionandCommitment);
+        console.log('Expected Behaviour :' + ExpectedBehaviour);
+        console.log('Investigationand Exploration :' + InvestigationandExploration);
+        console.log('Motivation :' + Motivation);
+        console.log('Observed Bug Behaviour :' + ObservedBugBehaviour);
+        console.log('Potential New Issuesand Requests :' + PotentialNewIssuesandRequests);
+        console.log('Social Conversation :' + SocialConversation);
+        console.log('Solution Discussion :' + SolutionDiscussion);
+        console.log('SolutionUsage :' + SolutionUsage);
+        console.log('Task Progress :' + TaskProgress);
+        console.log('Workarounds :' + Workarounds);
+        */
 
-    powerButton.addEventListener('click', function() {
-            chrome.storage.local.get(['enabled'], function(result) {
-                    var newState = !result.enabled;
-                    chrome.storage.local.set({'enabled' : newState}, function() {
-                            if (newState) {
-                                    powerButton.textContent = 'turn off';
-                            } else {
-                                    powerButton.textContent = 'turn on';
-                            }
-                            chrome.runtime.sendMessage({enabled: newState});
-                    });
+
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {action: "Discussion", 'condition':condition}, function(response) {
+                console.log(response.status);
             });
+        });
     });
 });
-
-document.addEventListener1('DomContentLoaded', function() {
-    var topicSelect = document.getElementById('topic-select');
-    topicSelect.addEventListener('change', function() {
-            var selectedTopic = topicSelect.value;
-            // 선택된 주제를 처리하는 코드 추가
-            console.log('선택된 주제:', selectedTopic);
-    })
-})
