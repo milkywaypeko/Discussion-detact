@@ -31,7 +31,7 @@ function extractAnswers() {
                 }
                 var SPTOstring = "";
                 for (var spto in splited_text_object) {
-                    SPTOstring = SPTOstring + '<div class = "IssueTextST IssueSPTOText' + stringcount + '" >' + splited_text_object[spto] + '</div>';
+                    SPTOstring = SPTOstring + '<span class = "IssueTextST IssueSPTOText' + stringcount + '" >' + splited_text_object[spto] + '</span>';
                     const answerSText = {
                         issueObjectAnchor : 'IssueSPTOText' + stringcount,
                         text : splited_text_object[spto],
