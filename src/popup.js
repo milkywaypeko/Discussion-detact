@@ -2,61 +2,70 @@
 
 import './popup.css';
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     var Set = document.getElementById("Set1");
-    Set.addEventListener('click', function(){
-        const ListActiononIssue = document.getElementById('ListActiononIssue').value;
-        const ListBugReproduction = document.getElementById('ListBugReproduction').value;
-        const ListContributionandCommitment = document.getElementById('ListContributionandCommitment').value;
-        const ListExpectedBehaviour = document.getElementById('ListExpectedBehaviour').value;
-        const ListInvestigationandExploration = document.getElementById('ListInvestigationandExploration').value;
-        const ListMotivation = document.getElementById('ListMotivation').value;
-        const ListObservedBugBehaviour = document.getElementById('ListObservedBugBehaviour').value;
-        const ListPotentialNewIssuesandRequests = document.getElementById('ListPotentialNewIssuesandRequests').value;
-        const ListSocialConversation = document.getElementById('ListSocialConversation').value;
-        const ListSolutionDiscussion = document.getElementById('ListSolutionDiscussion').value;
-        const ListSolutionUsage = document.getElementById('ListSolutionUsage').value;
-        const ListTaskProgress = document.getElementById('ListTaskProgress').value;
-        const ListWorkarounds = document.getElementById('ListWorkarounds').value;
-
+    Set.addEventListener('click', function () {
+        var ListActiononIssue = document.getElementById('ListActiononIssue');
+        var ListBugReproduction = document.getElementById('ListBugReproduction');
+        var ListContributionandCommitment = document.getElementById('ListContributionandCommitment');
+        var ListExpectedBehaviour = document.getElementById('ListExpectedBehaviour');
+        var ListInvestigationandExploration = document.getElementById('ListInvestigationandExploration');
+        var ListMotivation = document.getElementById('ListMotivation');
+        var ListObservedBugBehaviour = document.getElementById('ListObservedBugBehaviour');
+        var ListPotentialNewIssuesandRequests = document.getElementById('ListPotentialNewIssuesandRequests');
+        var ListSocialConversation = document.getElementById('ListSocialConversation');
+        var ListSolutionDiscussion = document.getElementById('ListSolutionDiscussion');
+        var ListSolutionUsage = document.getElementById('ListSolutionUsage');
+        var ListTaskProgress = document.getElementById('ListTaskProgress');
+        var ListWorkarounds = document.getElementById('ListWorkarounds');
+    
+        var CheckActiononIssue = document.getElementById('CheckActiononIssue');
+        var CheckBugReproduction = document.getElementById('CheckBugReproduction');
+        var CheckContributionandCommitment = document.getElementById('CheckContributionandCommitment');
+        var CheckExpectedBehaviour = document.getElementById('CheckExpectedBehaviour');
+        var CheckInvestigationandExploration = document.getElementById('CheckInvestigationandExploration');
+        var CheckMotivation = document.getElementById('CheckMotivation');
+        var CheckObservedBugBehaviour = document.getElementById('CheckObservedBugBehaviour');
+        var CheckPotentialNewIssuesandRequests = document.getElementById('CheckPotentialNewIssuesandRequests');
+        var CheckSocialConversation = document.getElementById('CheckSocialConversation');
+        var CheckSolutionDiscussion = document.getElementById('CheckSolutionDiscussion');
+        var CheckSolutionUsage = document.getElementById('CheckSolutionUsage');
+        var CheckTaskProgress = document.getElementById('CheckTaskProgress');
+        var CheckWorkarounds = document.getElementById('CheckWorkarounds');
         var condition = {
-            'List' : {
-                'ListActiononIssue' : ListActiononIssue,
-                'ListBugReproduction' : ListBugReproduction,
-                'ListContributionandCommitment' : ListContributionandCommitment,
-                'ListExpectedBehaviour' : ListExpectedBehaviour,
-                'ListInvestigationandExploration' : ListInvestigationandExploration,
-                'ListMotivation' : ListMotivation,
-                'ListObservedBugBehaviour' : ListObservedBugBehaviour,
-                'ListPotentialNewIssuesandRequests' : ListPotentialNewIssuesandRequests,
-                'ListSocialConversation' : ListSocialConversation,
-                'ListSolutionDiscussion' : ListSolutionDiscussion,
-                'ListSolutionUsage' : ListSolutionUsage,
-                'ListTaskProgress' : ListTaskProgress,
-                'ListWorkarounds' : ListWorkarounds,
-            }
-            
+            'List': {
+                'ListActiononIssue': ListActiononIssue.value,
+                'ListBugReproduction': ListBugReproduction.value,
+                'ListContributionandCommitment': ListContributionandCommitment.value,
+                'ListExpectedBehaviour': ListExpectedBehaviour.value,
+                'ListInvestigationandExploration': ListInvestigationandExploration.value,
+                'ListMotivation': ListMotivation.value,
+                'ListObservedBugBehaviour': ListObservedBugBehaviour.value,
+                'ListPotentialNewIssuesandRequests': ListPotentialNewIssuesandRequests.value,
+                'ListSocialConversation': ListSocialConversation.value,
+                'ListSolutionDiscussion': ListSolutionDiscussion.value,
+                'ListSolutionUsage': ListSolutionUsage.value,
+                'ListTaskProgress': ListTaskProgress.value,
+                'ListWorkarounds': ListWorkarounds.value,
+            },
+            'Check': {
+                'CheckActiononIssue': String(CheckActiononIssue.checked),
+                'CheckBugReproduction': String(CheckBugReproduction.checked),
+                'CheckContributionandCommitment': String(CheckContributionandCommitment.checked),
+                'CheckExpectedBehaviour': String(CheckExpectedBehaviour.checked),
+                'CheckInvestigationandExploration': String(CheckInvestigationandExploration.checked),
+                'CheckMotivation': String(CheckMotivation.checked),
+                'CheckObservedBugBehaviour': String(CheckObservedBugBehaviour.checked),
+                'CheckPotentialNewIssuesandRequests': String(CheckPotentialNewIssuesandRequests.checked),
+                'CheckSocialConversation': String(CheckSocialConversation.checked),
+                'CheckSolutionDiscussion': String(CheckSolutionDiscussion.checked),
+                'CheckSolutionUsage': String(CheckSolutionUsage.checked),
+                'CheckTaskProgress': String(CheckTaskProgress.checked),
+                'CheckWorkarounds': String(CheckWorkarounds.checked),
+            },
         }
-
-        /*
-        console.log('Actionon Issue :' + ActiononIssue);
-        console.log('Bug Reproduction :' + BugReproduction);
-        console.log('Contributionand Commitment :' + ContributionandCommitment);
-        console.log('Expected Behaviour :' + ExpectedBehaviour);
-        console.log('Investigationand Exploration :' + InvestigationandExploration);
-        console.log('Motivation :' + Motivation);
-        console.log('Observed Bug Behaviour :' + ObservedBugBehaviour);
-        console.log('Potential New Issuesand Requests :' + PotentialNewIssuesandRequests);
-        console.log('Social Conversation :' + SocialConversation);
-        console.log('Solution Discussion :' + SolutionDiscussion);
-        console.log('SolutionUsage :' + SolutionUsage);
-        console.log('Task Progress :' + TaskProgress);
-        console.log('Workarounds :' + Workarounds);
-        */
-
-
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {action: "Discussion", 'condition':condition}, function(response) {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "Discussion", 'condition': condition }, function (response) {
                 console.log(response.status);
             });
         });
