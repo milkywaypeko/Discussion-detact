@@ -5,34 +5,37 @@ import './popup.css';
 document.addEventListener('DOMContentLoaded', function(){
     var Set = document.getElementById("Set1");
     Set.addEventListener('click', function(){
-        const ActiononIssue = document.getElementById('ActiononIssue').value;
-        const BugReproduction = document.getElementById('BugReproduction').value;
-        const ContributionandCommitment = document.getElementById('ContributionandCommitment').value;
-        const ExpectedBehaviour = document.getElementById('ExpectedBehaviour').value;
-        const InvestigationandExploration = document.getElementById('InvestigationandExploration').value;
-        const Motivation = document.getElementById('Motivation').value;
-        const ObservedBugBehaviour = document.getElementById('ObservedBugBehaviour').value;
-        const PotentialNewIssuesandRequests = document.getElementById('PotentialNewIssuesandRequests').value;
-        const SocialConversation = document.getElementById('SocialConversation').value;
-        const SolutionDiscussion = document.getElementById('SolutionDiscussion').value;
-        const SolutionUsage = document.getElementById('SolutionUsage').value;
-        const TaskProgress = document.getElementById('TaskProgress').value;
-        const Workarounds = document.getElementById('Workarounds').value;
+        const ListActiononIssue = document.getElementById('ListActiononIssue').value;
+        const ListBugReproduction = document.getElementById('ListBugReproduction').value;
+        const ListContributionandCommitment = document.getElementById('ListContributionandCommitment').value;
+        const ListExpectedBehaviour = document.getElementById('ListExpectedBehaviour').value;
+        const ListInvestigationandExploration = document.getElementById('ListInvestigationandExploration').value;
+        const ListMotivation = document.getElementById('ListMotivation').value;
+        const ListObservedBugBehaviour = document.getElementById('ListObservedBugBehaviour').value;
+        const ListPotentialNewIssuesandRequests = document.getElementById('ListPotentialNewIssuesandRequests').value;
+        const ListSocialConversation = document.getElementById('ListSocialConversation').value;
+        const ListSolutionDiscussion = document.getElementById('ListSolutionDiscussion').value;
+        const ListSolutionUsage = document.getElementById('ListSolutionUsage').value;
+        const ListTaskProgress = document.getElementById('ListTaskProgress').value;
+        const ListWorkarounds = document.getElementById('ListWorkarounds').value;
 
         var condition = {
-            'ActiononIssue' : ActiononIssue,
-            'BugReproduction' : BugReproduction,
-            'ContributionandCommitment' : ContributionandCommitment,
-            'ExpectedBehaviour' : ExpectedBehaviour,
-            'InvestigationandExploration' : InvestigationandExploration,
-            'Motivation' : Motivation,
-            'ObservedBugBehaviour' : ObservedBugBehaviour,
-            'PotentialNewIssuesandRequests' : PotentialNewIssuesandRequests,
-            'SocialConversation' : SocialConversation,
-            'SolutionDiscussion' : SolutionDiscussion,
-            'SolutionUsage' : SolutionUsage,
-            'TaskProgress' : TaskProgress,
-            'Workarounds' : Workarounds,
+            'List' : {
+                'ListActiononIssue' : ListActiononIssue,
+                'ListBugReproduction' : ListBugReproduction,
+                'ListContributionandCommitment' : ListContributionandCommitment,
+                'ListExpectedBehaviour' : ListExpectedBehaviour,
+                'ListInvestigationandExploration' : ListInvestigationandExploration,
+                'ListMotivation' : ListMotivation,
+                'ListObservedBugBehaviour' : ListObservedBugBehaviour,
+                'ListPotentialNewIssuesandRequests' : ListPotentialNewIssuesandRequests,
+                'ListSocialConversation' : ListSocialConversation,
+                'ListSolutionDiscussion' : ListSolutionDiscussion,
+                'ListSolutionUsage' : ListSolutionUsage,
+                'ListTaskProgress' : ListTaskProgress,
+                'ListWorkarounds' : ListWorkarounds,
+            }
+            
         }
 
         /*
