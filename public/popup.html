@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <title>GitHub Discussion Detector</title>
     <style>
         body {
@@ -10,14 +10,12 @@
             height: 400px;
             margin: 0 auto;
         }
-
         .color-box {
             display: inline-block;
             width: 20px;
             height: 20px;
             margin-right: 10px;
         }
-
         .color-item {
             display: flex;
             align-items: center;
@@ -26,160 +24,139 @@
     </style>
     <script src="popup.js"></script>
 </head>
-
 <body>
     <h1>GitHub Discussion Detector</h1>
-    <table border=1>
-        <tr>
-            <th scope="col">분류 주제</td>
-            <th scope="col">숨기기</td>
-            <th scope="col">최대 퍼센트 설정</td>
-            <th scope="col">블록도 숨기기</td>
-        </tr>
-        <tr style="background-color: #F08080;">
-            <td><span>Action on Issue</span></td>
-            <td><input type='checkbox' name='CheckActiononIssue' value=''></td>
-            <td><select id="ListActiononIssue" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #00FF00;">
-            <td><span>Bug Reproduction</span></td>
-            <td><input type='checkbox' name='CheckBugReproduction' value=''></td>
-            <td><select id="ListBugReproduction" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #808000;">
-            <td><span style="color: white;">Contribution and Commitment</span></td>
-            <td><input type='checkbox' name='CheckContributionandCommitment' value=''></td>
-            <td><select id="ListContributionandCommitment" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #FF7F50;">
-            <td><span>Expected Behaviour</span></td>
-            <td><input type='checkbox' name='CheckExpectedBehaviour' value=''></td>
-            <td><select id="ListExpectedBehaviour" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #F0F8FF;">
-            <td><span>Investigation and Exploration</span></td>
-            <td><input type='checkbox' name='CheckInvestigationandExploration' value=''></td>
-            <td><select id="ListInvestigationandExploration" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #7FFFD4;">
-            <td><span>Motivation</span></td>
-            <td><input type='checkbox' name='CheckMotivation' value=''></td>
-            <td><select id="ListMotivation" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #DEB887;">
-            <td><span>Observed Bug Behaviour</span></td>
-            <td><input type='checkbox' name='CheckObservedBugBehaviour' value=''></td>
-            <td><select id="ListObservedBugBehaviour" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #ADFF2F;">
-            <td><span>Potential New Issues and Requests</span></td>
-            <td><input type='checkbox' name='CheckPotentialNewIssuesandRequests' value=''></td>
-            <td><select id="ListPotentialNewIssuesandRequests" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #00FFFF;">
-            <td><span>Social Conversation</span></td>
-            <td><input type='checkbox' name='CheckSocialConversation' value=''></td>
-            <td><select id="ListSocialConversation" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #DDA0DD;">
-            <td><span>Solution Discussion</span></td>
-            <td><input type='checkbox' name='CheckActiononIssue' value=''></td>
-            <td><select id="ListSolutionDiscussion" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #00FFFF;">
-            <td><span>Solution Usage</span></td>
-            <td><input type='checkbox' name='CheckSolutionUsage' value=''></td>
-            <td><select id="ListSolutionUsage" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #F0FFFF;">
-            <td><span>Task Progress</span></td>
-            <td><input type='checkbox' name='CheckTaskProgress' value=''></td>
-            <td><select id="ListTaskProgress" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-        <tr style="background-color: #F5F5DC;">
-            <td><span>Workarounds</span></td>
-            <td><input type='checkbox' name='CheckWorkarounds' value=''></td>
-            <td><select id="ListWorkarounds" class="selectbox">
-                    <option value="1" class="percent-option">100%</option>
-                    <option value="0.75" class="percent-option">75%</option>
-                    <option value="0.5" class="percent-option">50%</option>
-                    <option value="0.25" class="percent-option">25%</option>
-                    <option value="0" class="percent-option">0%</option>
-                </select></td>
-        </tr>
-    </table>
+    <div for="topic-identifier">분류 주제</div>
+    <div class="color-item" style="background-color: #F08080;">
+        <select id="ActiononIssue" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Action on Issue</span>
+    </div>
+    <div class="color-item" style="background-color: #00FF00;">
+        <select id="BugReproduction" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Bug Reproduction</span>
+    </div>
+    <div class="color-item" style="background-color: #808000;">
+        <select id="ContributionandCommitment" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span style="color: white;">Contribution and Commitment</span>
+    </div>
+    <div class="color-item" style="background-color: #FF7F50;">
+        <select id="ExpectedBehaviour" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Expected Behaviour</span>
+    </div>
+    <div class="color-item" style="background-color: #F0F8FF;">
+        <select id="InvestigationandExploration" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Investigation and Exploration</span>
+    </div>
+    <div class="color-item" style="background-color: #7FFFD4;">
+        <select id="Motivation" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Motivation</span>
+    </div>
+    <div class="color-item" style="background-color: #DEB887;">
+        <select id="ObservedBugBehaviour" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Observed Bug Behaviour</span>
+    </div>
+    <div class="color-item" style="background-color: #ADFF2F;">
+        <select id="PotentialNewIssuesandRequests" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Potential New Issues and Requests</span>
+    </div>
+    <div class="color-item" style="background-color: #00FFFF;">
+        <select id="SocialConversation" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Social Conversation</span>
+    </div>
+    <div class="color-item" style="background-color: #DDA0DD;">
+        <select id="SolutionDiscussion" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Solution Discussion</span>
+    </div>
+    <div class="color-item" style="background-color: #00FFFF;">
+        <select id="SolutionUsage" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Solution Usage</span>
+    </div>
+    <div class="color-item" style="background-color: #F0FFFF;">
+        <select id="TaskProgress" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Task Progress</span>
+    </div>
+    <div class="color-item" style="background-color: #F5F5DC;">
+        <select id="Workarounds" class="selectbox">
+            <option value="1" class="percent-option">100%</option>
+            <option value="0.75" class="percent-option">75%</option>
+            <option value="0.5" class="percent-option">50%</option>
+            <option value="0.25" class="percent-option">25%</option>
+            <option value="0" class="percent-option">0%</option>
+        </select>
+        <span>Workarounds</span>
+    </div>
     <input type="button" id="Set1" value="Set">
 </body>
 </html>
