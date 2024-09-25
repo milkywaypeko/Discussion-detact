@@ -89,83 +89,188 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             //그냥 이안에서 response 사용하시면 됩니다.
             for (let i = 0; i < response.length; i++) {
                 if (response[i].textType.result === "Action on Issue") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'lightcoral';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckActiononIssue == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<div style='backgroundColor = 'lightcoral'><details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details><div>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'lightcoral';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Bug Reproduction") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'lime';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckBugReproduction == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'lime';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Contribution and Commitment") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'olive';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
+                    
                     if (request.condition.Check.CheckContributionandCommitment == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'olive';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Expected Behaviour") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'coral';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckExpectedBehaviour == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'coral';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Investigation and Exploration") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'aliceblue';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckInvestigationandExploration == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'aliceblue';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Motivation") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'aquamarine';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckMotivation == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'aquamarine';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Observed Bug Behaviour") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'burlywood';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckObservedBugBehaviour == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'burlywood';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Potential New Issues and Requests") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'greenyellow';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckPotentialNewIssuesandRequests == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'greenyellow';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Social Conversation") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'cyan';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckSocialConversation == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'cyan';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Solution Discussion") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'plum';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckSolutionDiscussion == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'plum';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Solution Usage") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'aqua';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckSolutionUsage == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'aqua';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Task Progress") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'azure';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckTaskProgress == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'azure';
+                    nowText.style.color = 'black';
                 } else if (response[i].textType.result === "Workarounds") {
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.backgroundColor = 'beige';
-                    document.querySelector('.' + response[i].issueObjectAnchor).style.color = 'black';
+                    var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (request.condition.Check.CheckWorkarounds == "true") {
-                        document.querySelector('.' + response[i].issueObjectAnchor).style.display = 'none';
+                        var doctextString = nowText.innerHTML;
+                        doctextString = "<details><summary>Hided</summary><span class = 'warp'>" + doctextString + "<span></details>";
+                        nowText.innerHTML = doctextString;
+                    } else {
+                        var docBlock = nowText.querySelector("warp");
+                        if (docBlock != null) {
+                            nowText.innerHTML = docBlock.innerText;
+                        };
                     };
+                    nowText.style.backgroundColor = 'beige';
+                    nowText.style.color = 'black';
                 };
             };
 
