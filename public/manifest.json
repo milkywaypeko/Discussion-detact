@@ -17,7 +17,7 @@
         "default_popup": "popup.html"
     },
     "permissions": [
-        "storage", "activeTab"
+        "storage", "activeTab", "unlimitedStorage"
     ],
     "host_permissions": [
         "http://selogic.seoultech.ac.kr:8000/"

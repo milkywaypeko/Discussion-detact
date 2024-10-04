@@ -88,9 +88,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // background.js로 데이터를 보낼 때 사용
         chrome.runtime.sendMessage({ type: 'answers', data: answers }, (response) => {
             //그냥 이안에서 response 사용하시면 됩니다.
-            chrome.storage.sync.set({ classFyAndser: response }, function () {
-                console.log('Value is set to ' + response);
+            chrome.storage.local.set({ classFyAndser: response }, function () {
+                console.log(response);
             });
+
             for (let i = 0; i < response.length; i++) {
                 var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                 if (response[i].textType.result === "Action on Issue") {
@@ -176,10 +177,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     if (request.action === "Change") {
         console.log(request.condition);
-        chrome.storage.sync.get(['classFyAndser'], function (result) {
+        chrome.storage.local.get(['classFyAndser'], function (result) {
             if (result.classFyAndser != null) {
                 console.log(result.classFyAndser);
                 var response = result.classFyAndser;
+                console.log(response);
                 for (let i = 0; i < response.length; i++) {
                     var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (response[i].textType.result === "Action on Issue") {

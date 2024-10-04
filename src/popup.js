@@ -3,7 +3,56 @@
 import './popup.css';
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    const categories = [
+        'Action on Issue',
+        'Bug Reproduction',
+        'Contribution and Commitment',
+        'Expected Behaviour',
+        'Investigation and Exploration',
+        'Motivation',
+        'Observed Bug Behaviour',
+        'Potential New Issues and Requests',
+        'Social Conversation',
+        'Solution Discussion',
+        'Solution Usage',
+        'Task Progress',
+        'Workarounds'
+    ];
+
+    categories.forEach((category, index) => {
+        const checkbox = document.getElementById(`Check${category.replace(/\s+/g, '')}`);
+        const slider = document.getElementById(`List${category.replace(/\s+/g, '')}`);
+        
+        // 저장된 값 복원
+        chrome.storage.sync.get([`checkbox_${index}`, `slider_${index}`], function(result) {
+            checkbox.checked = result[`checkbox_${index}`] || false;
+            slider.value = result[`slider_${index}`] || 1; // 기본값 1
+        });
+
+        // 체크박스 상태 변경 시 저장
+        checkbox.addEventListener('change', function() {
+            chrome.storage.sync.set({ [`checkbox_${index}`]: checkbox.checked });
+        });
+
+        // 슬라이더 값 변경 시 저장
+        slider.addEventListener('input', function() {
+            chrome.storage.sync.set({ [`slider_${index}`]: slider.value });
+        });
+    });
+
+    // 숨기기 동작 체크박스
+    const hideCheckbox = document.getElementById('CheckHide');
+    chrome.storage.sync.get(['hideCheckbox'], function(result) {
+        hideCheckbox.checked = result.hideCheckbox || false;
+    });
+
+    hideCheckbox.addEventListener('change', function() {
+        chrome.storage.sync.set({ hideCheckbox: hideCheckbox.checked });
+    });
+    
     var Set = document.getElementById("Set1");
+
     Set.addEventListener('click', function () {
         var ListActiononIssue = document.getElementById('ListActiononIssue');
         var ListBugReproduction = document.getElementById('ListBugReproduction');
@@ -32,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var CheckSolutionUsage = document.getElementById('CheckSolutionUsage');
         var CheckTaskProgress = document.getElementById('CheckTaskProgress');
         var CheckWorkarounds = document.getElementById('CheckWorkarounds');
+
         var condition = {
             'List': {
                 'ListActiononIssue': ListActiononIssue.value,
@@ -100,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var CheckSolutionUsage = document.getElementById('CheckSolutionUsage');
         var CheckTaskProgress = document.getElementById('CheckTaskProgress');
         var CheckWorkarounds = document.getElementById('CheckWorkarounds');
+
         var condition = {
             'List': {
                 'ListActiononIssue': ListActiononIssue.value,
