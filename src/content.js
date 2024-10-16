@@ -61,7 +61,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     });
 
                     var net = texts.innerHTML
-                    net = '<td class="d-block comment-body markdown-body js-comment-body">' + "<details open class = 'IssueTimeLine'" + timelineCount + "'><summary>[접기/펼치기]</summary>" + net + "</details></td>";
+                    net = '<td class="d-block comment-body markdown-body js-comment-body">' + "<details open class = 'IssueTimeLine" + timelineCount + "'><summary>[접기/펼치기]</summary>" + net + "</details></td>";
                     texts.outerHTML = net
                     var end = stringcount;
                     elementStratEnd.push(
@@ -307,34 +307,42 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     console.log(getresponse);
                     if (request.condition.HideCheck == "true") {
                         for (let i = 0; i < getresponse.length; i++) {
-                            /*var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
-                            if (response[i].textType.result === "Action on Issue") {
+                            var nowTimeLine = document.querySelector('.IssueTimeLine' + getresponse[i].timelineCount);
+                            var totalLine = getresponse[i].end - getresponse[i].start;
+                            var RActiononIssue = getresponse[i].ActiononIssue/totalLine;
+                            var RBugReproduction = getresponse[i].BugReproduction/totalLine;
+                            var RContributionandCommitment = getresponse[i].ContributionandCommitment/totalLine;
+                            var RExpectedBehaviour = getresponse[i].ExpectedBehaviour/totalLine;
+                            var RInvestigationandExploration = getresponse[i].InvestigationandExploration/totalLine;
+                            var RMotivation = getresponse[i].Motivation/totalLine;
+                            var RObservedBugBehaviour = getresponse[i].ObservedBugBehaviour/totalLine;
+                            var RPotentialNewIssuesandRequests = getresponse[i].PotentialNewIssuesandRequests/totalLine;
+                            var RSocialConversation = getresponse[i].SocialConversation/totalLine;
+                            var RSolutionDiscussion = getresponse[i].SolutionDiscussion/totalLine;
+                            var RSolutionUsage = getresponse[i].SolutionUsage/totalLine;
+                            var RTaskProgress = getresponse[i].TaskProgress/totalLine;
+                            var RWorkarounds = getresponse[i].Workarounds/totalLine;
 
-                            } else if (response[i].textType.result === "Bug Reproduction") {
+                            console.log(RSolutionDiscussion);
 
-                            } else if (response[i].textType.result === "Contribution and Commitment") {
-
-                            } else if (response[i].textType.result === "Expected Behaviour") {
-
-                            } else if (response[i].textType.result === "Investigation and Exploration") {
-
-                            } else if (response[i].textType.result === "Motivation") {
-
-                            } else if (response[i].textType.result === "Observed Bug Behaviour") {
-
-                            } else if (response[i].textType.result === "Potential New Issues and Requests") {
-
-                            } else if (response[i].textType.result === "Social Conversation") {
-
-                            } else if (response[i].textType.result === "Solution Discussion") {
-
-                            } else if (response[i].textType.result === "Solution Usage") {
-
-                            } else if (response[i].textType.result === "Task Progress") {
-
-                            } else if (response[i].textType.result === "Workarounds") {
-
-                            };*/
+                            if (
+                                RActiononIssue > request.condition.List.ListActiononIssue ||
+                                RBugReproduction > request.condition.List.ListBugReproduction ||
+                                RContributionandCommitment > request.condition.List.ListContributionandCommitment ||
+                                RExpectedBehaviour > request.condition.List.ListExpectedBehaviour ||
+                                RInvestigationandExploration > request.condition.List.ListInvestigationandExploration ||
+                                RMotivation > request.condition.List.ListMotivation ||
+                                RObservedBugBehaviour > request.condition.List.ListObservedBugBehaviour ||
+                                RPotentialNewIssuesandRequests > request.condition.List.ListPotentialNewIssuesandRequests ||
+                                RSocialConversation > request.condition.List.ListSocialConversation ||
+                                RSolutionDiscussion > request.condition.List.ListSolutionDiscussion ||
+                                RSolutionUsage > request.condition.List.ListSolutionUsage ||
+                                RTaskProgress > request.condition.List.ListTaskProgress ||
+                                RWorkarounds > request.condition.List.ListWorkarounds) {
+                                    nowTimeLine.open = false;
+                            } else {
+                                nowTimeLine.open = true;
+                            };
                         }
                     }
                 }
