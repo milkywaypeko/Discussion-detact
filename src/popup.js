@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var CheckTaskProgress = document.getElementById('CheckTaskProgress');
         var CheckWorkarounds = document.getElementById('CheckWorkarounds');
 
+        const hideCheckbox = document.getElementById('CheckHide');
+
         var condition = {
             'List': {
                 'ListActiononIssue': ListActiononIssue.value,
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'CheckTaskProgress': String(CheckTaskProgress.checked),
                 'CheckWorkarounds': String(CheckWorkarounds.checked),
             },
+            'HideCheck' : String(hideCheckbox.checked),
         }
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { action: "Discussion", 'condition': condition }, function (response) {
@@ -151,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var CheckTaskProgress = document.getElementById('CheckTaskProgress');
         var CheckWorkarounds = document.getElementById('CheckWorkarounds');
 
+        const hideCheckbox = document.getElementById('CheckHide');
+
         var condition = {
             'List': {
                 'ListActiononIssue': ListActiononIssue.value,
@@ -182,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'CheckTaskProgress': String(CheckTaskProgress.checked),
                 'CheckWorkarounds': String(CheckWorkarounds.checked),
             },
+            'HideCheck' : String(hideCheckbox.checked),
         }
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { action: "Change", 'condition': condition }, function (response) {

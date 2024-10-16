@@ -36,15 +36,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         STs.setAttribute('class', 'IssueText' + count);
                         count += 1;
                         var splited_text = split(STs.innerText)
+
                         var splited_text_object = [];
                         for (var sp_t in splited_text) {
                             if (splited_text[sp_t].type === 'Sentence') {
                                 splited_text_object.push(splited_text[sp_t].raw);
                             }
                         }
+
                         var SPTOstring = "";
                         for (var spto in splited_text_object) {
-                            SPTOstring = SPTOstring + '<span class = "IssueTextST IssueSPTOText' + stringcount + '" >' + splited_text_object[spto] + ' </span>';
+                            SPTOstring = SPTOstring + '<span class = "IssueTextST IssueSPTOText' + stringcount + '">' + splited_text_object[spto] + ' </span>';
                             const answerSText = {
                                 issueObjectAnchor: 'IssueSPTOText' + stringcount,
                                 text: splited_text_object[spto],
@@ -53,8 +55,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                             stringcount += 1;
 
                         }
-                        STs.innerHTML = SPTOstring;
+                        console.log(STs.innerHTML);
+                        STs.innerHTML = '';
+                        STs.insertAdjacentHTML('beforebegin', SPTOstring)
                     });
+
+                    var net = texts.innerHTML
+                    net = '<td class="d-block comment-body markdown-body js-comment-body">' + "<details open class = 'IssueTimeLine'" + timelineCount + "'><summary>[접기/펼치기]</summary>" + net + "</details></td>";
+                    texts.outerHTML = net
                     var end = stringcount;
                     elementStratEnd.push(
                         {
@@ -170,7 +178,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 }
             }
 
-            console.log(elementStratEnd);
+            chrome.storage.local.set({ classFyTimline: elementStratEnd }, function () {
+                console.log(elementStratEnd);
+            });
         });
         sendResponse({ status: "changed" });
     }
@@ -290,8 +300,47 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         nowText.style.color = 'black';
                     };
                 };
-            }
+            };
+            chrome.storage.local.get(['classFyTimline'], function (getresult) {
+                if (getresult.classFyTimline != null) {
+                    var getresponse = getresult.classFyTimline;
+                    console.log(getresponse);
+                    if (request.condition.HideCheck == "true") {
+                        for (let i = 0; i < getresponse.length; i++) {
+                            /*var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
+                            if (response[i].textType.result === "Action on Issue") {
+
+                            } else if (response[i].textType.result === "Bug Reproduction") {
+
+                            } else if (response[i].textType.result === "Contribution and Commitment") {
+
+                            } else if (response[i].textType.result === "Expected Behaviour") {
+
+                            } else if (response[i].textType.result === "Investigation and Exploration") {
+
+                            } else if (response[i].textType.result === "Motivation") {
+
+                            } else if (response[i].textType.result === "Observed Bug Behaviour") {
+
+                            } else if (response[i].textType.result === "Potential New Issues and Requests") {
+
+                            } else if (response[i].textType.result === "Social Conversation") {
+
+                            } else if (response[i].textType.result === "Solution Discussion") {
+
+                            } else if (response[i].textType.result === "Solution Usage") {
+
+                            } else if (response[i].textType.result === "Task Progress") {
+
+                            } else if (response[i].textType.result === "Workarounds") {
+
+                            };*/
+                        }
+                    }
+                }
+            });
         });
+
         sendResponse({ status: "changed2" });
     }
 });
