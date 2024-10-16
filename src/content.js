@@ -11,8 +11,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     if (request.action === "Discussion") {
 
-        console.log(request.condition);
-
         var elementStratEnd = [];
 
         function extractAnswers() {
@@ -55,7 +53,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                             stringcount += 1;
 
                         }
-                        console.log(STs.innerHTML);
                         STs.innerHTML = '';
                         STs.insertAdjacentHTML('beforebegin', SPTOstring)
                     });
@@ -97,7 +94,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         chrome.runtime.sendMessage({ type: 'answers', data: answers }, (response) => {
             //그냥 이안에서 response 사용하시면 됩니다.
             chrome.storage.local.set({ classFyAndser: response }, function () {
-                console.log(response);
             });
 
             for (let i = 0; i < response.length; i++) {
@@ -179,19 +175,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             }
 
             chrome.storage.local.set({ classFyTimline: elementStratEnd }, function () {
-                console.log(elementStratEnd);
             });
         });
         sendResponse({ status: "changed" });
     }
 
     if (request.action === "Change") {
-        console.log(request.condition);
         chrome.storage.local.get(['classFyAndser'], function (result) {
             if (result.classFyAndser != null) {
-                console.log(result.classFyAndser);
                 var response = result.classFyAndser;
-                console.log(response);
                 for (let i = 0; i < response.length; i++) {
                     var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (response[i].textType.result === "Action on Issue") {
@@ -304,7 +296,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             chrome.storage.local.get(['classFyTimline'], function (getresult) {
                 if (getresult.classFyTimline != null) {
                     var getresponse = getresult.classFyTimline;
-                    console.log(getresponse);
                     if (request.condition.HideCheck == "true") {
                         for (let i = 0; i < getresponse.length; i++) {
                             var nowTimeLine = document.querySelector('.IssueTimeLine' + getresponse[i].timelineCount);
@@ -322,8 +313,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                             var RSolutionUsage = getresponse[i].SolutionUsage/totalLine;
                             var RTaskProgress = getresponse[i].TaskProgress/totalLine;
                             var RWorkarounds = getresponse[i].Workarounds/totalLine;
-
-                            console.log(RSolutionDiscussion);
 
                             if (
                                 RActiononIssue > request.condition.List.ListActiononIssue ||
