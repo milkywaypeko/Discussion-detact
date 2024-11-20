@@ -184,6 +184,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         chrome.storage.local.get(['classFyAndser'], function (result) {
             if (result.classFyAndser != null) {
                 var response = result.classFyAndser;
+                console.log(response);
                 for (let i = 0; i < response.length; i++) {
                     var nowText = document.querySelector('.' + response[i].issueObjectAnchor)
                     if (response[i].textType.result === "Action on Issue") {
@@ -296,6 +297,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             chrome.storage.local.get(['classFyTimline'], function (getresult) {
                 if (getresult.classFyTimline != null) {
                     var getresponse = getresult.classFyTimline;
+                    console.log(getresponse);
                     if (request.condition.HideCheck == "true") {
                         for (let i = 0; i < getresponse.length; i++) {
                             var nowTimeLine = document.querySelector('.IssueTimeLine' + getresponse[i].timelineCount);

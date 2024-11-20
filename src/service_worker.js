@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         
         const fetchPromises = message.data.map(SerTe => {
             //console.log(SerTe.text);
-            return fetch('http://selogic.seoultech.ac.kr:8000/process', {
+            return fetch('http://127.0.0.1:5000/process', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
